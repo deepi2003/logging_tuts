@@ -1,10 +1,15 @@
 <configuration>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%logger{36} - %msg%n</pattern>
+            <pattern> ACTUAL ---------%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="debug">
+
+    <logger name="org.deepti.tuts.logging.slf4J" level="DEBUG"></logger>
+
+    <root level="INFO">    <!--logger level takes precendence over root level -->
         <appender-ref ref="STDOUT"/>
     </root>
+
 </configuration>
