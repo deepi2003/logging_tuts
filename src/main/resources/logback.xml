@@ -1,4 +1,4 @@
-<configuration>
+<configuration scan="true" scanPeriod="10 seconds">
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>myApp.log</file>
@@ -10,8 +10,15 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern> ACTUAL ---------%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern> - %X{testMDC} ACTUAL ---------%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}  : %msg%n</pattern>
         </encoder>
+    </appender>
+
+    <appender name="SERVLET" class="ch.qos.logback.core.ConsoleAppender">
+        <layout>
+            <Pattern>Remote Value: %X{req.remoteHost} Request URL: %X{req.requestURL} Request Method: %X{req.method}
+                Request URI: %X{req.requestURI} %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}  : %msg%n</Pattern>
+        </layout>
     </appender>
 
     <logger name="org.deepti.tuts.logging.slf4J" level="DEBUG">
@@ -19,7 +26,7 @@
     </logger>
 
     <root level="INFO">    <!--logger level takes precendence over root level -->
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVLET"/>
     </root>
 
 </configuration>
