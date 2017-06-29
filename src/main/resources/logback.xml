@@ -20,7 +20,6 @@
 
     <root level="INFO">    <!--logger level takes precendence over root level -->
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref ="FILE" />
     </root>
 
 </configuration>
